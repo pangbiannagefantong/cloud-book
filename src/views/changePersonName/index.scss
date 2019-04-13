@@ -1,0 +1,30 @@
+@import '../../globalCss/px2-rem.scss';
+.container{
+    .change-person-name{
+        margin-top: -40px;
+    
+        .desc{
+            padding: 10px;
+        }
+        .btn{
+            margin-top: 10px;
+        }
+    }
+    .back{
+        background-color:rgb(42,163,255);
+        display: flex;
+        align-items: center;
+        height: px-to-rem(80);
+        margin: -50px -9px 40px -9px;
+        .iconfont{
+            font-size: 16px;
+            color: white;
+        }
+        .back-msg{
+            color: white;
+            margin-left: 114px;
+           
+        }
+    }
+}
+

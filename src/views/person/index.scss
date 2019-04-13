@@ -1,0 +1,188 @@
+@import '../../globalCss/px2-rem.scss';
+
+.top-msg{
+    background: rgb(60, 60, 241);
+    color: white;
+    box-shadow: 0 0 4px rgb(60, 60, 241);
+    .login-msg{
+        padding: px-to-rem(30);
+        display: flex;
+        justify-content: space-between;
+
+        .login-msg-left{
+            h2{
+                font-size: 20px;
+                font-weight: normal;
+            }
+            .desc{
+                font-size: 12px;
+                margin-top: 16px;
+            }
+        }
+        .login-msg-right{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            img{
+                width: px-to-rem(140);
+                height: px-to-rem(140);
+                border-radius: 50%
+            }
+            .iconfont{
+                margin-left: 5px;
+                font-size: 20px;
+            }
+        }
+    }
+    .user-login-msg{
+        padding: px-to-rem(30);
+        display: flex;
+        justify-content: space-between;
+
+        .user-login-msg-left{
+            margin-top: 10px;
+            h2{
+                font-size: 20px;
+                font-weight: normal;
+            }
+            .user-desc{
+                font-size: 12px;
+                margin-top: 16px;
+            }
+        }
+        .user-login-msg-right{
+            // display: flex;
+            // justify-content: space-between;
+            // align-items: center;
+            img{
+                width: 120px;
+                height:100px;
+                border-radius: 50%;
+                // margin-left: 20px;
+            }
+        }
+    }   
+
+    .read-msg{
+        display:flex;
+        justify-content: space-around;
+        padding-bottom: 16px;
+        padding-top: 20px;
+        position: relative;
+        color: white;
+
+        .read-msg-item{
+            
+            .item-col-1{
+                text-align: center;
+                font-size: 18px;
+                padding:4px;
+                .small-title{
+                    font-size: 14px;
+                }
+            }
+            .item-col-2{
+                text-align: center;
+                font-size: 14px;
+                padding: 4px;
+            }
+        }
+        .line1{
+            position: absolute;
+            right:30%;
+            top: 40%;
+            width: 2px;
+            height: 20px;
+            background: white;
+        }
+        .line2{
+            position: absolute;
+            left:30%;
+            top: 40%;
+            width: 2px;
+            height: 20px;
+            background: white;
+        }
+    }
+    
+}
+
+.bottom-msg{
+    padding: px-to-rem(18);
+    background: white;
+
+    .person-msg{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(217, 217, 228);
+        
+        .iconfont:nth-child(1){
+            color:rgb(60, 60, 241);
+            font-weight: 700;
+            font-size: 30px;
+        }
+        .iconfont:nth-child(3){
+            color:rgb(116, 116, 129);
+        }
+        .change-person-msg{
+            flex:2;
+            padding-left: 6px;
+        }
+    }
+
+    .collect-book{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(217, 217, 228);
+        color: black;
+
+        .iconfont:nth-child(1){
+            color:rgb(235, 51, 82);
+            font-weight: 700;
+            font-size: 34px;
+        }
+        .iconfont:nth-child(3){
+            color:rgb(116, 116, 129);
+        }
+        .collect-book-msg{
+            flex:2;
+            padding-left: 6px;
+        }
+    }
+
+    .like-book{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(217, 217, 228);
+
+        .iconfont:nth-child(1){
+            color:rgb(214, 211, 27);
+            font-weight: 700;
+            font-size: 34px;
+        }
+        .iconfont:nth-child(3){
+            color:rgb(116, 116, 129);
+        }
+        .like-book-msg{
+            flex:2;
+            padding-left: 6px;
+        }
+    }
+    
+}
+
+.exit-btn{
+    margin-top: 26px;
+    width: 94%;
+    margin-left: 10px;
+}
+

@@ -1,0 +1,72 @@
+@import '../../globalCss/px2-rem.scss';
+
+.study{
+    padding: px-to-rem(18);
+    padding-bottom: px-to-rem(60);
+    
+    .study-item{
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        margin-top: -10px;
+        // justify-content: space-between;
+        .read-img{
+            width: px-to-rem(201);
+            height: px-to-rem(267);
+            flex:1;
+        }
+
+        .read-msg{
+            margin-left: 6px;
+            flex:2;
+            h2{
+                font-size: 16px;
+                padding-top: 10px;
+            }
+            .read-status{
+                color:gray;
+                margin-top: 10px;
+            }
+            .read-progress{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 12px;
+                .read-percent{
+                    color:gray;
+                    font-size: 13px;
+                    margin-left: 20px;
+                }
+            }
+            .last-read{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: gray;
+                font-size: 12px;
+                margin-top: 10px;
+                .last-read-title{
+                    flex: 1
+                }
+                
+            }
+            .btns{
+                display: flex;
+                justify-content: space-around;
+                margin-top: 10px;
+            
+                .btn1{
+                    color: black;
+                    border:1px solid rgb(199, 189, 189);
+                }
+                .btn2{
+                    color: black;
+                    border:1px solid rgb(199, 189, 189);
+                }
+            }
+             
+            
+        }
+    }
+    
+}

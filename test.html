@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" id="form">
+        <input type="file" id="file"> 
+    </form>
+    <img  alt="" id="img">
+    <button id="btn">换头像啦</button>
+</body>
+<script src="./axios.js"></script>
+<script>
+    var form = document.querySelector('#form')
+    var file = document.querySelector('#file')
+    var token = ''
+    var img = document.querySelector('#img')
+
+    axios.get('http://upload.yaojunrong.com/getToken').then(res =>{
+        console.log(res);    
+        token = res.data.data
+    })
+    file.onchange = function (event) {
+        console.log(event.target.files);
+        var file = event.target.files[0]
+        var form = new FormData()
+        form.append('file',file)
+        form.append('token',token)
+
+        axios.post('https://upload-z1.qiniup.com',form).then(res =>{
+            var url = res.data.url
+            img.src = url
+        })
+    }
+</script>
+</html>

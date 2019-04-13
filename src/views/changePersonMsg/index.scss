@@ -1,0 +1,41 @@
+@import '../../globalCss/px2-rem.scss';
+
+.changePersonMsg{
+    padding: px-to-rem(18);
+}
+.changePersonMsg-style{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(184, 172, 172);
+    padding: 20px 10px;
+    color: black;
+}
+.user-avatar{
+    width: px-to-rem(140);
+    height: px-to-rem(140);
+    border-radius: 50%;
+}
+.user-avatar-msg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.iconfont{
+    font-size: 20px;
+}
+.back{
+    background-color:rgb(42,163,255);
+    display: flex;
+    align-items: center;
+    height: px-to-rem(80);
+    .iconfont{
+        font-size: 16px;
+        color: white;
+    }
+    .back-msg{
+        color: white;
+        margin-left: 114px;
+       
+    }
+}

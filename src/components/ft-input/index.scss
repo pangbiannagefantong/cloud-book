@@ -1,0 +1,26 @@
+@import '../../globalCss/px2-rem.scss';
+
+.ft-label{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #0099ff;
+
+    input{
+        display: block;
+        width: 100%;
+        outline:medium;
+        height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+        margin-top: 30px;
+        margin-bottom: 2px;
+        margin-left: 10px;
+        border:none;
+    }
+    .iconfont{
+        margin-left: 6px;
+        margin-bottom:-20px;
+        font-size: 20px;
+    }
+}
+
