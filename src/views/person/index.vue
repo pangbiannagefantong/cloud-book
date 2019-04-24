@@ -14,18 +14,18 @@
 
             <div class="user-login-msg" v-else>
                 <div class="user-login-msg-right"  >
-                    <img v-if="userMsg.user" :src="userMsg.user.avatar || userAvatar" alt="user-avatar.jpg">
+                    <img :src="userMsg.avatar || userAvatar" :alt="userMsg.avatar">
                 </div>
                 <div class="user-login-msg-left">
-                    <h2 v-if="userMsg.user">{{userMsg.user.username||userMsg.user.phone}}</h2>
-                    <div v-if="userMsg.user" class="user-desc">{{userMsg.user.desc||"大哥，相遇就是缘分，留句话呗"}}</div>
+                    <h2 >{{userMsg.username||userMsg.phone}}</h2>
+                    <div class="user-desc">{{userMsg.desc||"大哥，相遇就是缘分，留句话呗"}}</div>
                 </div>   
             </div>
 
             <div class="read-msg" v-if="this.token">
                 <div class="read-msg-item">
-                    <div class="item-col-1">
-                        {{userMsg.read||24}}
+                    <div class="item-col-1" if="token">
+                        {{readData.length}}
                         <span class="small-title">本</span>
                     </div>
                     <div class="item-col-2">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="read-msg-item">
                     <div class="item-col-1">
-                        {{userMsg.collection||22}}
+                        {{collectionData.length}}
                         <span class="small-title">本</span>
                     </div>
                     <div class="item-col-2">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="read-msg-item">
                     <div class="item-col-1">
-                        {{userMsg.like||10}}
+                        {{userMsg.like}}
                         <span class="small-title">本</span>
                     </div>
                     <div class="item-col-2">
@@ -99,7 +99,9 @@
             return {
                 userAvatar,
                 token: '',
-                loginImg
+                loginImg,
+                readData:{},
+                collectionData:{}
             }
         },
         components: {
@@ -109,6 +111,18 @@
             jumpLogin() {
                 this.$router.push({
                     name:'login'
+                })
+            },
+            getReadlist () {
+                this.$axios.get(this.$api.getReadBook,{headers: {token:this.token}}).then(res =>{
+                    this.readData = res.data
+                })
+            },
+            getCollection() {
+                this.$axios.get(this.$api.getCollectBook, {headers: {token:this.token}}).then(res =>{
+                    console.log(res.data,'1111');
+                    this.collectionData = res.data
+                    
                 })
             },
             handleExit() {
@@ -138,15 +152,19 @@
         created() {
             this.token = localStorage.getItem('token')
             // console.log(this.token);
-            
+            this.getReadlist()
+            this.getCollection()
             if(this.token) {
                 this.$store.dispatch('getUserMsg')
             }
         },
         computed: {
             userMsg() {
-                return this.$store.state.userMsg
+                return this.$store.state.userMsg               
             }
+        },
+        updated () {
+            console.log(this.userMsg, '2222')
         }
     }
 </script>

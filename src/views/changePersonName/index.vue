@@ -29,13 +29,12 @@
         },
         data() {
             return {
-                username: '',
-
+                username:'',
             }
         },
         computed: {
             userMsg() {
-                return this.$store.state.userMsg.user
+                return this.$store.state.userMsg
             }
 
         },
@@ -46,7 +45,7 @@
                 console.log(val,'val');
             },
             handleSave() {
-                this.$axios.put(this.$api.changeUser,{username:this.username}).then(res =>{
+                this.$axios.post(this.$api.changeUserName,{username:this.username}).then(res =>{
                     if(res.code == 200){
                         Toast({
                             message: '好听到爆炸的名字改好了',

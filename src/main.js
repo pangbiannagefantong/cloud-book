@@ -9,6 +9,7 @@ import 'amfe-flexible/index'//引入淘宝移动端适配方案
 import {fetch} from '@/utils/index'//引入封装好的axios
 import api from '@/utils/api'
 import store from './store'
+import './iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = fetch//挂载axios在vue实例上

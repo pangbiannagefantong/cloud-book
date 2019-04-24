@@ -31,7 +31,7 @@
         },
         computed: {
             userMsg() {
-                return this.$store.state.userMsg.user
+                return this.$store.state.userMsg
             }
         },
         methods: {
@@ -45,7 +45,7 @@
                 console.log(this.desc);
             },
             handleSave() {
-                this.$axios.put(this.$api.changeUser,this.desc).then(res =>{
+                this.$axios.post(this.$api.changeUserDesc,{desc:this.desc}).then(res =>{
                     if(res.code == 200){
                         Toast({
                             message: '有文化的个性签名修改好啦',

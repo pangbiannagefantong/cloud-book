@@ -13,6 +13,8 @@ const store = new Vuex.Store({
     mutations: {
         'CHANGE_USERMSG'(state,userMsg) {
             state.userMsg = userMsg
+            // console.log(state.userMsg);
+            
         }
     },
     actions: {

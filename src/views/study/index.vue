@@ -1,5 +1,10 @@
 <template>
-    <div class="study container" >
+<div>
+    <div class="plsLogin" v-if='!this.token'>
+        <h2>登陆查看，谢谢</h2>
+    </div>
+    
+    <div class="study container" v-else>
             <div class="study-item" v-for="(item,index) in arr" :key="index">
                 <div class="read-img">
                     <img :src="item.book.img" alt="">
@@ -30,12 +35,18 @@
                         <!-- @click="continueRead" -->
                     </div>
                     <div class="btns">
-                        <Button size="small" class="btn1">继续阅读 </Button>
-                        <Button size="small" class="btn2">查看文档</Button>    
+                        <router-link :to="{name:'article',params: {id:item.title._id}}">
+                            <Button size="small" class="btn1">继续阅读 </Button>
+                        </router-link>
+                        <router-link :to="{name:'details',params: {id: item.book._id}}">
+                            <Button size="small" class="btn2">查看文档</Button> 
+                        </router-link>
+                           
                     </div>   
                 </div>
             </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -57,25 +68,18 @@
                 arr:[],
                 value:0,
                 time:new Date('2019-04-07T10:18:57.000Z'),
+                // isShow: true
             }
         },
         methods: {
             getReadBookData() {
-                if(localStorage.token){
-                    this.$axios.get(this.$api.getReadBook).then(res =>{
+                this.token = localStorage.getItem('token')
+                if(this.token){
+                    // this.isShow = false
+                    this.$axios.get(this.$api.getReadBook,{headers: {token:this.token}}).then(res =>{
+                        console.log(res,'5555')
                         if(res.code == 200) {
                             this.arr = res.data
-                            // let Arr = this.arr
-                            // Arr.map(item =>{
-                            //     this.bookId = item._id
-                            //     this.lastReadId = item.title._id
-                            //     console.log(this.lastReadId);
-                                
-                            //     // console.log(this.bookId);
-                            // })
-                            // console.log(this.arr);
-                            // // console.log(res.data.arr);
-                            
                         }
                         
                     })
@@ -85,39 +89,11 @@
                     })
                 }    
             },
-            // getBookData() {
-            //     const id = this.$route.params.id
-            //     this.$axios.get(this.$api.getBook + id).then((res) => {
-            //         this.bookData = res.data
-            //         console.log(res.data);
-                    
-            //     })
-            // },
-            // getLastRead() {
-            //     const id = 
-            // },
-            // jumpBook() {
-
-                    // const id = this.$route.params.id;
-                    // console.log(id);
-                    
-                    // this.$axios.get(this.$api.getBook + id).then((res =>{
-                    //     console.log(res.data);
-                        
-                    // }))
-                
-                // this.$router.push({
-                //     name: 'titles',
-                    // params: {
-                    //     id: this.lastRead_id
-                    // }
-            //     })
-            // }
-
         },
         created() {
-            this.getReadBookData()
-            // this.getBookData()
+            if(this.token) {
+                this.getReadBookData()
+            } 
         }
     }
 </script>

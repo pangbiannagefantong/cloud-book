@@ -33,7 +33,8 @@
                 const id = this.$route.params.id
                 this.$axios.get(this.$api.getTitles + id).then((res) => {
                     this.titles = res.data
-                    // console.log(res.data);
+                    console.log(222); 
+                    console.log(res);
                     
                 })
 

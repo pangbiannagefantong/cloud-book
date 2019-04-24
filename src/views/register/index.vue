@@ -50,7 +50,7 @@
             handleRegister() {
                 let phoneStatus = validator.isMobilePhone(this.userData.phone,'zh-CN')
                 let passwordLength = validator.isLength(this.userData.password,{min:6,max:undefined})
-                if(phoneStatus&&passwordLength&&isSendCode){
+                if(phoneStatus&&passwordLength){
                     this.$axios.post(this.$api.register, this.userData).then((res =>{
                         if(res.code == 200){
                             Toast({  

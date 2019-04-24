@@ -8,11 +8,11 @@
         ref="loadmore">
             <MySwiper />
                 <div class="content">
-                       
                     <ContentItem v-for="(item,index) in contentData" 
                         :options="item"
                         :key="index">
                     </ContentItem>
+
                 </div>
             </Loadmore>
     </div>
@@ -46,28 +46,25 @@
         },
         methods: {
             getContent() {
-                return new Promise((resolve)=>{
+                return new Promise((resolve) =>{
                     this.$axios.get(this.$api.getContent,{
-                    params: this.queryData    
-                }).then(res =>{
-                    let resData = res.data
-                    if(resData.length < this.queryData.size){
-                        this.allLoaded = true
-                    }
-                    resData = resData.map(item => {
-                        item.books = item.books.map(it => {
-                            it.updateTime = moment(it.updateTime).format('YYYY年MM月DD日')
-                            return it
+                        params: this.queryData    
+                    }).then(res =>{
+                        let resData = res.data
+                        if(resData.length < this.queryData.size){
+                            this.allLoaded = true
+                        }
+                        resData = resData.map(item => {
+                            item.books = item.books.map(it => {
+                                it.updateTime = moment(it.updateTime).format('YYYY年MM月DD日')
+                                return it
+                            })
+                            return item
                         })
-                        return item
+                        this.contentData = [].concat(this.contentData,resData)
+                        })
+                        resolve()
                     })
-                    // this.contentData = [...this.contentData,...resData]
-                    this.contentData = [].concat(this.contentData,resData)
-                    // console.log(this.contentData);
-                    
-                    resolve()
-                    })
-                })
                 
             },
             loadTop() {
@@ -84,23 +81,20 @@
                     this.$refs.loadmore.onTopLoaded()
                 })
             },
-            loadBottom() {
+            loadBottom  () {
                 this.queryData = {
-                    pn:this.queryData.pn++,
+                    pn:this.queryData.pn = this.queryData.pn + 1,
                     booksSize:2,
                     size:2
                 }
-                console.log("上拉加载");
-
+                console.log(this.queryData,"!!!");
                 this.getContent().then(()=>{
                     this.$refs.loadmore.onBottomLoaded()
                 })
+                // console.log(this.contentData);
             },
-            
         }, 
-        
-
-        created() {
+        created () {
             this.getContent()
         }
     }

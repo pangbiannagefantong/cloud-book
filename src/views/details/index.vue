@@ -22,7 +22,7 @@
         </div>
 
         <div class="btns">
-            <Button size="small" v-if="!isCollected" @click="addCollect">加入收藏</Button>
+            <Button size="small" v-if="isCollected" @click="addCollect">加入收藏</Button>
             <Button size="small" v-else @click="delCollect">已收藏</Button>
             <Button size="small">分享好友</Button>
         </div>
@@ -66,9 +66,10 @@
                 bookData: [],
                 totalTitles : 0,
                 isCollected : {
-                    // default : true
+                    default : false
                 },
-                token: ''
+                token: '',
+                collectionBook:[]
                 // collected
             }
         },
@@ -84,27 +85,38 @@
                     this.bookData = res.data
                     res.data.updateTime = moment(res.data.updateTime).format('YYYY年MM月DD日')
                     this.totalTitles = res.length
-                    console.log(this.bookData);
-                    console.log(res);
+                    // console.log(this.bookData);
+                    // console.log(res);
                     // console.log(res.length);   
                     })
                 },
+            getCollectBook(){
+                this.$axios.get(this.$api.getCollectBook,{header:{token: this.token}}).then(res =>{
+                    this.collectionBook = res.data                       
+                })
+            },
             addCollect() {
-                if(!this.isCollected) {
-                    this.isCollected = !this.isCollected
-                    this.bookData.isCollected = this.isCollected
-                    this.$axios.post(this.$api.addCollect,this.bookData._id).then(res =>{       
-                        if(!localStorage.token){   //用户不存在且用户状态为未收藏
-                            Toast({
-                                message: '可不可以先去登录',
-                                duration: 1000
-                            })
-                        }
-                    })
-
+                this.token = localStorage.getItem('token')
+                if(!this.token){
+                    Toast({
+                            message: '可不可以先去登录',
+                            duration: 1000
+                        })
+                }else{
+                    
+                    if(this.isCollected){
+                        this.$axios.post(this.$api.addCollect,this.bookData._id,{header: {token: this.token}}).then(res =>{
+                            this.isCollected = !this.isCollected
+                                // this.bookData.isCollected = !this.isCollected
+                                // console.log(res,'888');
+                                
+                                Toast({
+                                    message: '收藏成功',
+                                    duration: 1000
+                                })
+                        })
+                    }
                 }  
-                
-               
             },
             delCollect() {
                 this.$axios.post(this.$api.delCollect,this.bookData._id).then(res =>{
@@ -127,6 +139,7 @@
         },
         created() {
             this.getBookData()
+            this.getCollectBook()
         }
     }
 </script>

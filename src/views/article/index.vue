@@ -50,11 +50,11 @@
                     const id = this.$route.params.id
                     // const id = itemId?itemId:this.$route.params.id
                     this.$axios.get(this.$api.getArticle + id).then((res)=>{  
-                    // console.log(res.data);
+                    console.log(res.data);
                     const converter = new Showdown.Converter()
-                    this.html = converter.makeHtml(res.data.article.content)
+                    this.html = converter.makeHtml(res.data.content.trim())
                     this.article = res.data
-                    this.index = res.data.article.index
+                    this.index = res.data.index
                     resolve()
                     })
                 })
@@ -73,14 +73,15 @@
                 }
             },
             getTitles() {
-                const id = this.article.article.bookId
+                const id = this.article.bookId
+                console.log(id);
+                console.log(this.article)
                 this.$axios.get(this.$api.getTitles + id).then((res) => {
                     this.titles = res.data    
                 })
             },
             handleJump (isPrev) {
                 const _this = this
-               
                 function getArticleByIndex() {
                     const item = _this.titles.find(item => item.index == _this.index)
                     const id = item._id
@@ -140,9 +141,7 @@
             })
             
         },
-    }
-    //父传子
-    // 
+    } 
 </script>
 <style scoped lang="scss" src="./index.scss">    
 </style>

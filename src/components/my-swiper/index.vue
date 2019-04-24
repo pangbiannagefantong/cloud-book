@@ -36,7 +36,7 @@
             getSwiper (){
                 this.$axios.get(this.$api.getSwiper).then(res =>{
                     this.swiperData = res.data
-                    // console.log(this.swiperData);
+                    console.log(this.swiperData);
                 }) 
             }
         },

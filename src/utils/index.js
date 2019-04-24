@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 var fetch = axios.create({
-    baseURL: process.env.BASE_URL
+    // baseURL: process.env.BASE_URL
+    baseURL: '/api'
 })
 
 fetch.interceptors.response.use(function (response) {

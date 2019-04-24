@@ -10,7 +10,7 @@
             <div class="changePersonMsg-avatar changePersonMsg-style" >    
                 <div>头像</div>
                 <div class="user-avatar-msg">
-                    <img v-if="userMsg.user" :src="userMsg.user.avatar || userAvatar" alt="user-avatar.jpg" class="user-avatar" >
+                    <img  :src="userMsg.avatar || userAvatar" alt="user-avatar.jpg" class="user-avatar" >
                     <span class="iconfont iconnext"></span>
                 </div>    
             </div>
@@ -18,8 +18,8 @@
         <router-link to="changePersonName">
             <div class="changePersonMsg-name changePersonMsg-style">
                 <div>昵称</div>
-                <div v-if="userMsg.user">
-                    {{userMsg.user.username || userMsg.user.phone}}
+                <div>
+                    {{userMsg.username || userMsg.phone}}
                     <span class="iconfont iconnext"></span>
                 </div>     
             </div>
@@ -27,8 +27,8 @@
         <router-link to="changePersonDesc">
             <div class="changePersonMsg-desc changePersonMsg-style">
             <div>个性签名</div>
-            <div v-if="userMsg.user">
-                {{userMsg.user.desc ||' 客官客官，说句话嘛'}}
+            <div >
+                {{userMsg.desc ||' 客官客官，说句话嘛'}}
                 <span class="iconfont iconnext"></span>
             </div>
         </div>
@@ -68,7 +68,7 @@
         },
         methods: {
             changeAvatar(url) {
-                this.$axios.put(this.$api.changeUser,{avatar: url}).then(res =>{
+                this.$axios.post(this.$api.changeUserAvatar,{avatar: url}).then(res =>{
                     if(res.code == 200){
                         this.$store.dispatch('getUserMsg')
                         Toast({

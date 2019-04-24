@@ -56,7 +56,7 @@
                 if(phoneStatus&&passwordLength){
                     this.$axios.post(this.$api.login,this.userData).then(res =>{
                     if(res.code == 200){
-                        localStorage.setItem('token',res.token)
+                        localStorage.setItem('token',res.data.token)
                         Toast({
                             message: "哈哈哈，登录进去了",
                             duration: 1000
