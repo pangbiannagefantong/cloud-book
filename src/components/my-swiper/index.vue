@@ -46,7 +46,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
 
 @import '../../globalCss/px2-rem.scss';
 

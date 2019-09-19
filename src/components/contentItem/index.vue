@@ -43,7 +43,7 @@ export default {
         options: Object,
     },
     created() {
-        console.log(this.options);   
+        console.log(this.options,'9999');   
     }
 }
 </script>

@@ -17,7 +17,7 @@
             <router-link :to="{name:'register'}">
                 没有账号？立即注册
             </router-link>
-            </div>
+        </div>
         <Button size="large" type="primary" class="login-button" @click="handleLogin">立即登录</Button>
     </div>
 </template>
@@ -54,6 +54,8 @@
                 let passwordLength = validator.isLength(this.userData.password,{min:6,max:undefined})
                 // &&passwordLength
                 if(phoneStatus&&passwordLength){
+
+                    
                     this.$axios.post(this.$api.login,this.userData).then(res =>{
                     if(res.code == 200){
                         localStorage.setItem('token',res.data.token)

@@ -6,15 +6,15 @@
         :bottom-all-loaded="allLoaded"
         bottomPullText = "上拉加载更多数据"
         ref="loadmore">
-            <MySwiper />
-                <div class="content">
-                    <ContentItem v-for="(item,index) in contentData" 
-                        :options="item"
-                        :key="index">
-                    </ContentItem>
+        <MySwiper />
+            <div class="content">
+                <ContentItem v-for="(item,index) in contentData" 
+                    :options="item"
+                    :key="index">
+                </ContentItem>
 
-                </div>
-            </Loadmore>
+            </div>
+        </Loadmore>
     </div>
 </template>
 
